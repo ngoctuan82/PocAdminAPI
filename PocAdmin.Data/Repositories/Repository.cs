@@ -8,7 +8,7 @@ namespace PocAdmin.Data.Repositories
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public Repository(DbContext context)
+        public Repository(AppDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();
