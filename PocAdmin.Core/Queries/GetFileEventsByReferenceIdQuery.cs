@@ -3,5 +3,5 @@ using PocAdmin.Core.Entities;
 
 namespace PocAdmin.Core.Queries
 {
-    public record GetFileEventsByReferenceIdQuery(int ReferenceId) : IRequest<IEnumerable<FileEvent>>;
+    public record GetFileEventsByReferenceIdQuery(string ReferenceId) : IRequest<IEnumerable<FileEvent>>;
 }

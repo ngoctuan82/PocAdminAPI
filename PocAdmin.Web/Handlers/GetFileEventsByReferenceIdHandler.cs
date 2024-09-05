@@ -8,17 +8,22 @@ namespace PocAdmin.Api.Handlers
 {
     public class GetFileEventsByReferenceIdHandler : IRequestHandler<GetFileEventsByReferenceIdQuery, IEnumerable<FileEvent>>
     {
-        private readonly IQueryRepository<FileEvent> _queryRepository;
+        private readonly IQueryRepository<FileEvent> _queryFileEventRepository;
+        private readonly IQueryRepository<InvalidData> _queryInvalidDataRepository;
 
-        public GetFileEventsByReferenceIdHandler(IQueryRepository<FileEvent> queryRepository)
+        public GetFileEventsByReferenceIdHandler(IQueryRepository<FileEvent> queryRepository, IQueryRepository<InvalidData> queryInvalidDataRepository)
         {
-            _queryRepository = queryRepository;
+            _queryFileEventRepository = queryRepository;
+            _queryInvalidDataRepository = queryInvalidDataRepository;
         }
 
         public async Task<IEnumerable<FileEvent>> Handle(GetFileEventsByReferenceIdQuery request, CancellationToken cancellationToken)
         {
-            return await _queryRepository.GetAll()
-                .Where(fe => fe.ReferenceId == request.ReferenceId)
+            var data = _queryInvalidDataRepository.GetAll().Where(e => e.CA_RefId == request.ReferenceId);
+            var result = from e in data
+                         join f in _queryFileEventRepository.GetAll()
+                         on e.Event_FileId
+                .Where(fe => fe.Id == request.ReferenceId)
                 .ToListAsync(cancellationToken);
         }
     }
