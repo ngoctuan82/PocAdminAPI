@@ -17,7 +17,7 @@ namespace PocAdmin.Api.Controllers
         }
 
         [HttpGet("ByReferenceId/{referenceId}")]
-        public async Task<ActionResult<IEnumerable<FileEvent>>> GetFileEventsByReferenceId(int referenceId)
+        public async Task<ActionResult<IEnumerable<FileEvent>>> GetFileEventsByReferenceId(string referenceId)
         {
             return Ok(await _mediator.Send(new GetFileEventsByReferenceIdQuery(referenceId)));
         }

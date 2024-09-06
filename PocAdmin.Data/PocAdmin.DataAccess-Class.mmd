@@ -1,0 +1,27 @@
+classDiagram 
+	
+	class QueryRepository ~T~ {
+		-DbContext _context 
+		-DbSet~T~ _dbSet 
+		+GetAll() IQueryable~T~
+		+GetById(int id) IQueryable~T~
+	}
+	class AppDbContext  {
+		+ InvalidDataView : DbSet~InvalidData~
+		+ FileEvents : DbSet~FileEvent~
+		-OnModelCreating(ModelBuilder modelBuilder) void
+	}
+	class Repository ~T~ {
+		-DbContext _context 
+		-DbSet~T~ _dbSet 
+		+GetByIdAsync(int id) Task~T~
+		+GetAllAsync() Task~IEnumerable~T~~
+		+AddAsync(T entity) Task~T~
+		+UpdateAsync(T entity) Task~T~
+		+DeleteAsync(int id) Task
+	}
+	
+	QueryRepository --|> IQueryRepository
+	AppDbContext --|> DbContext
+	Repository --|> IRepository
+	

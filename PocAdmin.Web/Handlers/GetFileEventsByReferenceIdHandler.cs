@@ -20,11 +20,13 @@ namespace PocAdmin.Api.Handlers
         public async Task<IEnumerable<FileEvent>> Handle(GetFileEventsByReferenceIdQuery request, CancellationToken cancellationToken)
         {
             var data = _queryInvalidDataRepository.GetAll().Where(e => e.CA_RefId == request.ReferenceId);
+
             var result = from e in data
                          join f in _queryFileEventRepository.GetAll()
-                         on e.Event_FileId
-                .Where(fe => fe.Id == request.ReferenceId)
-                .ToListAsync(cancellationToken);
+                         on e.Event_FileId equals f.Id
+                         select f;
+                        
+            return await result.ToListAsync(cancellationToken);
         }
     }
 }
