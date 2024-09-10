@@ -22,6 +22,6 @@ namespace PocAdmin.Api.Handlers
         {
             return await _queryRepository.GetAll().ToListAsync(cancellationToken);
         }
-       
+
     }
 }

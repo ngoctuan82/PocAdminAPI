@@ -7,6 +7,7 @@ public class AppDbContext : DbContext
 
     public DbSet<InvalidData> InvalidDataView { get; set; }
     public DbSet<FileEvent> FileEvents { get; set; }
+    public DbSet<RawEvent> RawEvents { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,6 +23,13 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.FileName).IsRequired();
             entity.Property(e => e.Directory).IsRequired();
+        });
+        modelBuilder.Entity<RawEvent>(entity =>
+        {
+            entity.ToTable("bbg.CorporateActionEventV2");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.FileSourceId);
+            entity.Property(e => e.ReferenceId);
         });
     }
 }

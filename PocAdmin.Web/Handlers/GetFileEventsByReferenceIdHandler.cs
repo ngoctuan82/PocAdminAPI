@@ -13,23 +13,24 @@ namespace PocAdmin.Api.Handlers
     public class GetFileEventsByReferenceIdHandler : IRequestHandler<GetFileEventsByReferenceIdQuery, IEnumerable<FileEvent>>
     {
         private readonly IQueryRepository<FileEvent> _queryFileEventRepository;
-        private readonly IQueryRepository<InvalidData> _queryInvalidDataRepository;
+        private readonly IQueryRepository<RawEvent> _queryRawEventRepository;
 
-        public GetFileEventsByReferenceIdHandler(IQueryRepository<FileEvent> queryRepository, IQueryRepository<InvalidData> queryInvalidDataRepository)
+        public GetFileEventsByReferenceIdHandler(IQueryRepository<FileEvent> queryRepository, IQueryRepository<RawEvent> queryRawEvent)
         {
             _queryFileEventRepository = queryRepository;
-            _queryInvalidDataRepository = queryInvalidDataRepository;
+            _queryRawEventRepository = queryRawEvent;
         }
 
         public async Task<IEnumerable<FileEvent>> Handle(GetFileEventsByReferenceIdQuery request, CancellationToken cancellationToken)
         {
-            var data = _queryInvalidDataRepository.GetAll().Where(e => e.CA_RefId == request.ReferenceId);
+            var events = _queryRawEventRepository.GetAll().Where(e => e.ReferenceId == request.ReferenceId);
 
-            var result = from e in data
+            var result = from e in events
                          join f in _queryFileEventRepository.GetAll()
-                         on e.Event_FileId equals f.Id
+                         on e.FileSourceId equals f.Id
+                         orderby f.Created descending
                          select f;
-                        
+
             return await result.ToListAsync(cancellationToken);
         }
     }

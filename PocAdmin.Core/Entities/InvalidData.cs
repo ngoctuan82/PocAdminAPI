@@ -10,7 +10,7 @@ namespace PocAdmin.Core.Entities
         public int Event_SecId { get; set; }
         public int Event_FileId { get; set; }
         public DateTime Event_EffectiveDate { get; set; }
-        public DateTime Event_AmmendmentDate{ get; set; }
+        public DateTime Event_AmmendmentDate { get; set; }
         public string Event_FileName { get; set; } = String.Empty;
         public int CA_Id { get; set; }
         public int CA_EffectiveDate { get; set; }
