@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PocAdmin.Core.Entities;
 using PocAdmin.Core.Queries;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PocAdmin.Api.Controllers
 {

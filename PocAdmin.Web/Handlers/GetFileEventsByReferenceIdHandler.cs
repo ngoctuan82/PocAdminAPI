@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using PocAdmin.Core.Entities;
 using PocAdmin.Core.Interfaces;
 using PocAdmin.Core.Queries;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PocAdmin.Api.Handlers
 {
