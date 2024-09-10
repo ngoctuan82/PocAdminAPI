@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocAdmin.Core.Interfaces;
+using System.Linq;
 
 namespace PocAdmin.Data.Repositories
 {
@@ -23,6 +24,7 @@ namespace PocAdmin.Data.Repositories
         {
             return _dbSet.Where(e => EF.Property<int>(e, "Id") == id);
         }
+
     }
 
 }

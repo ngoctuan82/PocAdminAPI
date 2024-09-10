@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PocAdmin.Core.Entities;
+using System.Collections.Generic;
 
 namespace PocAdmin.Core.Queries
 {

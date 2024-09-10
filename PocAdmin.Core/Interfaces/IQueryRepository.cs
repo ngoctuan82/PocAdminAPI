@@ -1,4 +1,6 @@
-﻿namespace PocAdmin.Core.Interfaces
+﻿using System.Linq;
+
+namespace PocAdmin.Core.Interfaces
 {
     public interface IQueryRepository<T> where T : class
     {

@@ -1,4 +1,7 @@
-﻿namespace PocAdmin.Core.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace PocAdmin.Core.Interfaces
 {
     public interface IRepository<T> where T : class
     {

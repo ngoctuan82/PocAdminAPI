@@ -1,4 +1,6 @@
-﻿namespace PocAdmin.Core.Entities
+﻿using System;
+
+namespace PocAdmin.Core.Entities
 {
     public class FileEvent
     {

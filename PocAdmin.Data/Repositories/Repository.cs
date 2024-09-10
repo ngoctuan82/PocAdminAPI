@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PocAdmin.Core.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PocAdmin.Data.Repositories
 {

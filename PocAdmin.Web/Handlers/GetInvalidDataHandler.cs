@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using PocAdmin.Core.Entities;
 using PocAdmin.Core.Interfaces;
 using PocAdmin.Core.Queries;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PocAdmin.Api.Handlers
 {
@@ -19,5 +22,6 @@ namespace PocAdmin.Api.Handlers
         {
             return await _queryRepository.GetAll().ToListAsync(cancellationToken);
         }
+       
     }
 }

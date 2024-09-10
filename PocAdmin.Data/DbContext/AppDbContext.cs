@@ -1,5 +1,4 @@
-﻿// Data/AppDbContext.cs
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PocAdmin.Core.Entities;
 
 public class AppDbContext : DbContext
