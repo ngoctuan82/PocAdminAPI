@@ -28,10 +28,10 @@ namespace PocAdmin.Api.Handlers
             var result = from e in events
                          join f in _queryFileEventRepository.GetAll()
                          on e.FileSourceId equals f.Id
-                         orderby f.Created descending
+                         orderby f.Created descending                         
                          select f;
 
-            return await result.ToListAsync(cancellationToken);
+            return (await result.ToListAsync(cancellationToken)).DistinctBy(e => e.Id);
         }
     }
 }

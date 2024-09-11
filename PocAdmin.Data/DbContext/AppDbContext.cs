@@ -19,14 +19,14 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<FileEvent>(entity =>
         {
-            entity.ToTable("bbg.CorporateActionFiles");
+            entity.ToTable("CorporateActionFiles","bbg");
             entity.HasKey(e => e.Id);
             entity.Property(e => e.FileName).IsRequired();
             entity.Property(e => e.Directory).IsRequired();
         });
         modelBuilder.Entity<RawEvent>(entity =>
         {
-            entity.ToTable("bbg.CorporateActionEventV2");
+            entity.ToTable("CorporateActionV2Events","bbg");
             entity.HasKey(e => e.Id);
             entity.Property(e => e.FileSourceId);
             entity.Property(e => e.ReferenceId);
